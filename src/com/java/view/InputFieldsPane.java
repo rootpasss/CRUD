@@ -23,7 +23,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
-class InputFieldsPane extends javax.swing.JPanel {
+public class InputFieldsPane extends javax.swing.JPanel {
   private JTextField[] inputComponents;
   private JButton bCreate;
   public InputFieldsPane() {
