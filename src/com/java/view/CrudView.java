@@ -17,16 +17,20 @@
 */
 package com.java.view;
 
-import java.awt.Color;
+import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JTextField;
+import java.util.List;
+
+import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
+//TODO: Try to make just ONE pane with fields and then instantiate it for the 4 tab panes
+//TODO: Continue adding panels for Update and Delete sections
 @SuppressWarnings("serial")
 public class CrudView extends javax.swing.JFrame {
-  private JTabbedPane TB;
+  private static JTabbedPane TB;
   private InputFieldsPane IFP;
+  private ReadFieldsPane RFP;
   public CrudView() {
     super("CRUD Project");
     setSize(420,200);
@@ -34,8 +38,10 @@ public class CrudView extends javax.swing.JFrame {
     setLocationRelativeTo(null);
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     IFP=new InputFieldsPane();
+    RFP=new ReadFieldsPane();
     TB=new JTabbedPane();
     TB.addTab("Create new record",IFP);
+    TB.addTab("Read",RFP);
     add(TB);
     setVisible(true);
   }
@@ -57,39 +63,29 @@ public class CrudView extends javax.swing.JFrame {
   public String getJob() {
     return IFP.getComponentValue(5);
   }
-  public void addCreationListener(java.awt.event.ActionListener L) {
+  public String getFindCode() {
+    return RFP.fFind.getText();
+  }
+  public void fillData(List<String> info) {
+    RFP.setCode(info.get(0));
+    RFP.setName(info.get(1));
+    RFP.setAge(info.get(2));
+    RFP.setPhone(info.get(3));
+    RFP.setEmail(info.get(4));
+    RFP.setJob(info.get(5));
+  }
+  public void showWarning(String W) {
+    java.awt.Toolkit.getDefaultToolkit().beep();
+    JOptionPane.showMessageDialog(null,W,"Error!",JOptionPane.ERROR_MESSAGE);
+    RFP.flushFields();
+  }
+  public void addCreationListener(ActionListener L) {
     IFP.getActionButton().addActionListener(L);
   }
-}
-@SuppressWarnings("serial")
-class InputFieldsPane extends javax.swing.JPanel {
-  private JTextField[] inputComponents;
-  private JButton bCreate;
-  public InputFieldsPane() {
-    String[]titles="Code,Full Name,Age,Phone Number,Email Address,Occupation".split(",");
-    inputComponents=new JTextField[titles.length];
-    bCreate=new JButton("Create");
-    for(int i=0;i<titles.length;i++) {
-      String value=titles[i];
-      JTextField TF=new JTextField() {
-        @Override
-        public void paintComponent(java.awt.Graphics g) {
-          super.paintComponent(g);
-          g.setColor(Color.GRAY);
-          if(getText().isEmpty())
-            g.drawString(value,6,18);
-        }
-      };
-      TF.setPreferredSize(new java.awt.Dimension(170,25));
-      inputComponents[i]=TF;
-      add(TF);
-    }
-    add(bCreate);
+  public void addReadListener(ActionListener L) {
+    RFP.getFinderField().addActionListener(L);
   }
-  public String getComponentValue(int val) {
-    return inputComponents[val].getText();
-  }
-  public JButton getActionButton() {
-    return bCreate;
+  public static void jumpToTab(int index) {
+    TB.setSelectedIndex(index);
   }
 }
