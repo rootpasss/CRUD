@@ -17,10 +17,12 @@
 */
 package com.java.controller;
 
+import java.util.List;
+
 import com.java.model.CrudModel;
 import com.java.view.CrudView;
 
-//TODO: Add listeners for CRUD
+//TODO: Continue adding listeners for CRUD
 public class CrudController {
   private CrudModel CM;
   private CrudView CV;
@@ -28,7 +30,7 @@ public class CrudController {
     CV=new CrudView();
     CM=new CrudModel();
     CV.addCreationListener(e->creation());
-    //CV.addReadListener(e->read());
+    CV.addReadListener(e->read());
   }
   private void creation() {
     String code=CV.getCode();
@@ -37,6 +39,23 @@ public class CrudController {
     String phone=CV.getPhone();
     String email=CV.getEmail();
     String job=CV.getJob();
-    CM.create(code,name,age,phone,email,job);
+    if(code.length()>0&&name.length()>0&&age.length()>0&&phone.length()>0&&
+        email.length()>0&&job.length()>0) {
+      CM.create(code,name,age,phone,email,job);
+    } else {
+      CV.showWarning("All fields are REQUIRED due to create a new record!");
+    }
+  }
+  private void read() {
+    String ID=CV.getFindCode();
+    if(!ID.isEmpty()) {
+      List<String>data=CM.read(ID);
+      if(data.size()>0)
+        CV.fillData(data);
+      else
+        CV.showWarning("No record with ID '"+ID+"' were found");
+    } else {
+      CV.showWarning("Record ID is REQUIRED!");
+    }
   }
 }
