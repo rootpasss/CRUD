@@ -32,16 +32,7 @@ public class InputFieldsPane extends javax.swing.JPanel {
     bCreate=new JButton("Create");
     for(int i=0;i<titles.length;i++) {
       String value=titles[i];
-      JTextField TF=new JTextField() {
-        @Override
-        public void paintComponent(java.awt.Graphics g) {
-          super.paintComponent(g);
-          g.setColor(Color.GRAY);
-          if(getText().isEmpty())
-            g.drawString(value,6,18);
-        }
-      };
-      TF.setPreferredSize(new java.awt.Dimension(170,25));
+      Field TF=new Field(value);
       inputComponents[i]=TF;
       add(TF);
     }
