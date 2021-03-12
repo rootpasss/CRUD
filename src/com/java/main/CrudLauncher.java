@@ -24,7 +24,7 @@ public class CrudLauncher {
     //Test callings goes here
   }
   public static void main(String[] args) {
-    //new CrudController();
-    new CrudLauncher().testCall();
+    new CrudController();
+    //new CrudLauncher().testCall();
   }
 }
