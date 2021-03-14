@@ -19,6 +19,7 @@ package com.java.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 
 @SuppressWarnings("serial")
 public class Field extends javax.swing.JTextField {
@@ -45,7 +46,7 @@ public class Field extends javax.swing.JTextField {
     setFocusable(!state);
   }
   @Override
-  public void paintComponent(java.awt.Graphics g) {
+  public void paintComponent(Graphics g) {
     super.paintComponent(g);
     g.setColor(Color.GRAY);
     if(getText().isEmpty())
