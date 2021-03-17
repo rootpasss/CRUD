@@ -15,12 +15,12 @@
 * Developer Contact: jtrejosb@live.com
 * GitHub.com/jtrejosb
 */
-package com.java.controller;
+package io.jtrejosb.controller;
 
 import java.util.List;
 
-import com.java.model.CrudModel;
-import com.java.view.CrudView;
+import io.jtrejosb.model.CrudModel;
+import io.jtrejosb.view.CrudView;
 
 //TODO: Continue adding listeners for CRUD
 public class CrudController {
