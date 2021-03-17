@@ -13,4 +13,4 @@ Basic CRUD application using MySQL
 - Creation of record.
 - Read a record.
 
-In addiction there are pending some source code changes to improve scalability and prevent code duplication.
+In addition there are pending some source code changes to improve scalability and prevent code duplication.
