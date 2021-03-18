@@ -15,7 +15,7 @@
 * Developer Contact: jtrejosb@live.com
 * GitHub.com/jtrejosb
 */
-package com.java.model;
+package io.jtrejosb.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
