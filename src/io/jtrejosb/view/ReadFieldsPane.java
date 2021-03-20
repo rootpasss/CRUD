@@ -15,7 +15,7 @@
 * Developer Contact: jtrejosb@live.com
 * GitHub.com/jtrejosb
 */
-package com.java.view;
+package io.jtrejosb.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -51,7 +51,7 @@ public class ReadFieldsPane extends javax.swing.JPanel {
     };
     fFind.setPreferredSize(new Dimension(150,25));
     B=new JButton("Go to Update tab");
-    B.addActionListener(e->com.java.view.CrudView.jumpToTab(2));
+    B.addActionListener(e->io.jtrejosb.view.CrudView.jumpToTab(2));
     B.setVisible(false);
     add(fCode);
     add(fName);
