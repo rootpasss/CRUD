@@ -15,7 +15,7 @@
 * Developer Contact: jtrejosb@live.com
 * GitHub.com/jtrejosb
 */
-package com.java.view;
+package io.jtrejosb.view;
 
 import java.awt.Color;
 
