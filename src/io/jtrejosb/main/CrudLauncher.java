@@ -15,9 +15,9 @@
 * Developer Contact: jtrejosb@live.com
 * GitHub.com/jtrejosb
 */
-package com.java.main;
+package io.jtrejosb.main;
 
-import com.java.controller.CrudController;
+import io.jtrejosb.controller.CrudController;
 
 public class CrudLauncher {
   private void testCall() {
