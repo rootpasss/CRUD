@@ -24,6 +24,8 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
+import io.jtrejosb.view.core.FieldsPane;
+
 //TODO: Try to make just ONE pane with fields and then instantiate it for the 4 tab panes
 //TODO: Continue adding panels for Update and Delete sections
 @SuppressWarnings("serial")
@@ -31,6 +33,7 @@ public class CrudView extends javax.swing.JFrame {
   private static JTabbedPane TB;
   private InputFieldsPane IFP;
   private ReadFieldsPane RFP;
+  private FieldsPane TFP;
   public CrudView() {
     super("CRUD Project");
     setSize(420,200);
@@ -39,9 +42,12 @@ public class CrudView extends javax.swing.JFrame {
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     IFP=new InputFieldsPane();
     RFP=new ReadFieldsPane();
+    TFP=new FieldsPane();
+    TFP.setDisplayMode(FieldsPane.UPDATE_MODE);
     TB=new JTabbedPane();
     TB.addTab("Create new record",IFP);
     TB.addTab("Read",RFP);
+    TB.addTab("Update",TFP);
     add(TB);
     setVisible(true);
   }
