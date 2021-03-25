@@ -1,4 +1,4 @@
-package io.jtrejosb.view;
+package io.jtrejosb.view.core;
 
 public interface FieldMode {
   public static final int CREATION_MODE=1;

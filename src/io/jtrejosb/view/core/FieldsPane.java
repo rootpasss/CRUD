@@ -1,4 +1,4 @@
-package io.jtrejosb.view;
+package io.jtrejosb.view.core;
 
 import java.awt.Color;
 import java.awt.Dimension;
