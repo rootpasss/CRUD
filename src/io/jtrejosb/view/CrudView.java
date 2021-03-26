@@ -33,7 +33,7 @@ public class CrudView extends javax.swing.JFrame {
   private static JTabbedPane TB;
   private InputFieldsPane IFP;
   private ReadFieldsPane RFP;
-  private FieldsPane TFP;
+  private FieldsPane TFP;//testings only
   public CrudView() {
     super("CRUD Project");
     setSize(420,200);
@@ -72,6 +72,21 @@ public class CrudView extends javax.swing.JFrame {
   public String getFindCode() {
     return RFP.fFind.getText();
   }
+
+  //TEST ONLY!
+  public String getFindCode2() {
+    return TFP.getFinderField().getText();
+  }
+  public void fillData2(List<String> info) {
+    TFP.setCode(info.get(0));
+    TFP.setName(info.get(1));
+    TFP.setAge(info.get(2));
+    TFP.setPhone(info.get(3));
+    TFP.setEmail(info.get(4));
+    TFP.setJob(info.get(5));
+  }
+  //TEST ONLY!
+
   public void fillData(List<String> info) {
     RFP.setCode(info.get(0));
     RFP.setName(info.get(1));
@@ -90,6 +105,7 @@ public class CrudView extends javax.swing.JFrame {
   }
   public void addReadListener(ActionListener L) {
     RFP.getFinderField().addActionListener(L);
+    TFP.getFinderField().addActionListener(L);
   }
   public static void jumpToTab(int index) {
     TB.setSelectedIndex(index);
