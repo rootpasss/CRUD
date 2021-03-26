@@ -35,7 +35,7 @@ public class FieldsPane extends javax.swing.JPanel implements FieldMode {
     fFind.setPreferredSize(new Dimension(150,25));
     fFind.setForeground(fCode.getForeground());
     B=new JButton();
-    B.setEnabled(false);
+    //B.setEnabled(false);
 
     add(fCode);
     add(fName);
@@ -69,6 +69,30 @@ public class FieldsPane extends javax.swing.JPanel implements FieldMode {
 
   public void setEmail(String data) {
     fEmail.setText(data);
+  }
+
+  public String getCode() {
+    return fCode.getText();
+  }
+
+  public String getName() {
+    return fName.getText();
+  }
+
+  public String getAge() {
+    return fAge.getText();
+  }
+
+  public String getPhone() {
+    return fPhone.getText();
+  }
+
+  public String getEmail() {
+    return fEmail.getText();
+  }
+
+  public String getJob() {
+    return fJob.getText();
   }
 
   public void setDisplayMode(int mode) {

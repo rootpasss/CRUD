@@ -31,9 +31,6 @@ public class CrudController {
     CM=new CrudModel();
     CV.addCreationListener(e->creation());
     CV.addReadListener(e->read());
-    //TEST ONLY!
-    //CV.addReadListener(e->readTEST());
-    //TEST ONLY!
   }
   private void creation() {
     String code=CV.getCode();
@@ -61,20 +58,4 @@ public class CrudController {
       CV.showWarning("Record ID is REQUIRED!");
     }
   }
-
-  //TEST ONLY!
-  private void readTEST() {
-    String ID=CV.getFindCode2();
-    if(!ID.isEmpty()) {
-      List<String>data=CM.read(ID);
-      if(data.size()>0) {
-        CV.fillData2(data);
-      } else {
-        CV.showWarning("No record with ID '"+ID+"' were found");
-      }
-    } else {
-      CV.showWarning("Record REQUIRED!");
-    }
-  }
-  //TEST ONLY!
 }
