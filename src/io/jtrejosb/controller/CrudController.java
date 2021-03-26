@@ -32,7 +32,7 @@ public class CrudController {
     CV.addCreationListener(e->creation());
     CV.addReadListener(e->read());
     //TEST ONLY!
-    CV.addReadListener(e->readTEST());
+    //CV.addReadListener(e->readTEST());
     //TEST ONLY!
   }
   private void creation() {
@@ -73,7 +73,7 @@ public class CrudController {
         CV.showWarning("No record with ID '"+ID+"' were found");
       }
     } else {
-      CV.showWarning("Record ID is REQUIRED!");
+      CV.showWarning("Record REQUIRED!");
     }
   }
   //TEST ONLY!
