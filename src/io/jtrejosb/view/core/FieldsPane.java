@@ -71,6 +71,7 @@ public class FieldsPane extends javax.swing.JPanel implements FieldMode {
     fEmail.setText(data);
   }
 
+  //Setters: may be eventually replaced with the method getDataFields
   public String getCode() {
     return fCode.getText();
   }
@@ -118,8 +119,8 @@ public class FieldsPane extends javax.swing.JPanel implements FieldMode {
     fFind.selectAll();
   }
 
-  public Field[] getDataFields() {
-    return new Field[]{fCode,fName,fAge,fPhone,fEmail,fJob};
+  public JTextField[] getDataFields() {
+    return new JTextField[]{fCode,fName,fAge,fPhone,fEmail,fJob};
   }
 
   public JTextField getFinderField() {
@@ -142,6 +143,7 @@ public class FieldsPane extends javax.swing.JPanel implements FieldMode {
     fPhone.setEditable(false);
     fEmail.setEditable(false);
     fJob.setEditable(false);
+    B.setText("Go to Update tab");
     B.setVisible(false);
   }
 
@@ -156,6 +158,20 @@ public class FieldsPane extends javax.swing.JPanel implements FieldMode {
     B.setText("Delete");
     B.setVisible(true);
   }
+
+  public void enableEdit() {
+    fCode.setEditable(true);
+    fName.setEditable(true);
+    fAge.setEditable(true);
+    fPhone.setEditable(true);
+    fEmail.setEditable(true);
+    fJob.setEditable(true);
+    B.setVisible(true);
+  }
+
+  public void showButton() {
+    B.setVisible(true);
+  }
 }
 
 @SuppressWarnings("serial")
@@ -164,9 +180,15 @@ class Field extends JTextField {
   public Field(String ph) {
     this.ph=ph;
     setEnabled(true);
-    setPreferredSize(new Dimension(150,25));
+    setPreferredSize(new Dimension(170,25));
     setForeground(Color.DARK_GRAY);
     setToolTipText("");
+    addFocusListener(new java.awt.event.FocusAdapter() {
+      @Override
+      public void focusGained(java.awt.event.FocusEvent evt) {
+        selectAll();
+      }
+    });
   }
 
   @Override

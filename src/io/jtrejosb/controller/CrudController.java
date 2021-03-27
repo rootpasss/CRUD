@@ -31,6 +31,7 @@ public class CrudController {
     CM=new CrudModel();
     CV.addCreationListener(e->creation());
     CV.addReadListener(e->read());
+    CV.addUpdateListener(e->update());
   }
   private void creation() {
     String code=CV.getCode();
@@ -56,6 +57,21 @@ public class CrudController {
         CV.showWarning("No record with ID '"+ID+"' were found");
     } else {
       CV.showWarning("Record ID is REQUIRED!");
+    }
+  }
+
+  private void update() {
+    String code=CV.getCode();
+    String name=CV.getName();
+    String age=CV.getAge();
+    String phone=CV.getPhone();
+    String email=CV.getEmail();
+    String job=CV.getJob();
+    if(code.length()>0&&name.length()>0&&age.length()>0&&phone.length()>0&&
+        email.length()>0&&job.length()>0) {
+      CM.update(code,name,age,phone,email,job,code);
+    } else {
+      CV.showWarning("All fields are REQUIRED due to update this record!");
     }
   }
 }

@@ -31,7 +31,7 @@ import io.jtrejosb.view.core.FieldsPane;
 @SuppressWarnings("serial")
 public class CrudView extends javax.swing.JFrame {
   private static JTabbedPane TB;
-  private FieldsPane IFP;
+  private FieldsPane CFP;
   private FieldsPane RFP;
   private FieldsPane UFP;
   public CrudView() {
@@ -40,36 +40,60 @@ public class CrudView extends javax.swing.JFrame {
     setResizable(false);
     setLocationRelativeTo(null);
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-    IFP=new FieldsPane();
+    CFP=new FieldsPane();
     RFP=new FieldsPane();
     UFP=new FieldsPane();
-    IFP.setDisplayMode(FieldsPane.CREATION_MODE);
+    CFP.setDisplayMode(FieldsPane.CREATION_MODE);
     RFP.setDisplayMode(FieldsPane.READ_MODE);
     UFP.setDisplayMode(FieldsPane.UPDATE_MODE);
     TB=new JTabbedPane();
-    TB.addTab("Create new record",IFP);
+    TB.addTab("Create new record",CFP);
     TB.addTab("Read",RFP);
     TB.addTab("Update",UFP);
     add(TB);
     setVisible(true);
   }
   public String getCode() {
-    return IFP.getCode();
+    if(CFP.isShowing())
+      return CFP.getCode();
+    else if(UFP.isShowing())
+      return UFP.getCode();
+    return "";
   }
   public String getName() {
-    return IFP.getName();
+    if(CFP.isShowing())
+      return CFP.getName();
+    else if(UFP.isShowing())
+      return UFP.getName();
+    return "";
   }
   public String getAge() {
-    return IFP.getAge();
+    if(CFP.isShowing())
+      return CFP.getAge();
+    else if(UFP.isShowing())
+      return UFP.getAge();
+    return "";
   }
   public String getPhone() {
-    return IFP.getPhone();
+    if(CFP.isShowing())
+      return CFP.getPhone();
+    else if(UFP.isShowing())
+      return UFP.getPhone();
+    return "";
   }
   public String getEmail() {
-    return IFP.getEmail();
+    if(CFP.isShowing())
+      return CFP.getEmail();
+    else if(UFP.isShowing())
+      return UFP.getEmail();
+    return "";
   }
   public String getJob() {
-    return IFP.getJob();
+    if(CFP.isShowing())
+      return CFP.getJob();
+    else if(UFP.isShowing())
+      return UFP.getJob();
+    return "";
   }
 
   public String getFindCode() {
@@ -82,36 +106,36 @@ public class CrudView extends javax.swing.JFrame {
   }
 
   public void fillData(List<String> info) {
+    javax.swing.JTextField[] fields;
     if(RFP.isShowing()) {
-      RFP.setCode(info.get(0));
-      RFP.setName(info.get(1));
-      RFP.setAge(info.get(2));
-      RFP.setPhone(info.get(3));
-      RFP.setEmail(info.get(4));
-      RFP.setJob(info.get(5));
+      fields=RFP.getDataFields();
+      for(int i=0;i<fields.length;i++)
+        fields[i].setText(info.get(i));
+      RFP.showButton();
     } else if(UFP.isShowing()) {
-      UFP.setCode(info.get(0));
-      UFP.setName(info.get(1));
-      UFP.setAge(info.get(2));
-      UFP.setPhone(info.get(3));
-      UFP.setEmail(info.get(4));
-      UFP.setJob(info.get(5));
+      fields=UFP.getDataFields();
+      for(int i=0;i<fields.length;i++)
+        fields[i].setText(info.get(i));
+      UFP.enableEdit();
     }
   }
   public void showWarning(String W) {
     java.awt.Toolkit.getDefaultToolkit().beep();
     JOptionPane.showMessageDialog(null,W,"Error!",JOptionPane.ERROR_MESSAGE);
-    //RFP.flushFields();
+    //RFP.flushFields();  TIP: FieldsPane class includes the method clearAllFields()
   }
   public void addCreationListener(ActionListener L) {
-    if(IFP.isShowing()) {
-      IFP.getButton().addActionListener(L);
+    if(CFP.isShowing()) {
+      CFP.getButton().addActionListener(L);
     }
-    //IFP.getActionButton().addActionListener(L);
   }
   public void addReadListener(ActionListener L) {
     RFP.getFinderField().addActionListener(L);
     UFP.getFinderField().addActionListener(L);
+  }
+
+  public void addUpdateListener(ActionListener L) {
+    UFP.getButton().addActionListener(L);
   }
   public static void jumpToTab(int index) {
     TB.setSelectedIndex(index);
