@@ -30,7 +30,7 @@ import io.jtrejosb.view.core.FieldsPane;
 //TODO: Continue adding panels for Update and Delete sections
 @SuppressWarnings("serial")
 public class CrudView extends javax.swing.JFrame {
-  private static JTabbedPane TB;
+  private JTabbedPane TB;
   private FieldsPane CFP;
   private FieldsPane RFP;
   private FieldsPane UFP;
@@ -47,7 +47,7 @@ public class CrudView extends javax.swing.JFrame {
     RFP.setDisplayMode(FieldsPane.READ_MODE);
     UFP.setDisplayMode(FieldsPane.UPDATE_MODE);
     TB=new JTabbedPane();
-    TB.addTab("Create new record",CFP);
+    TB.addTab("Create",CFP);
     TB.addTab("Read",RFP);
     TB.addTab("Update",UFP);
     add(TB);
@@ -112,6 +112,7 @@ public class CrudView extends javax.swing.JFrame {
       for(int i=0;i<fields.length;i++)
         fields[i].setText(info.get(i));
       RFP.showButton();
+      RFP.getButton().addActionListener(e->jumpToTab(2));
     } else if(UFP.isShowing()) {
       fields=UFP.getDataFields();
       for(int i=0;i<fields.length;i++)
@@ -122,7 +123,13 @@ public class CrudView extends javax.swing.JFrame {
   public void showWarning(String W) {
     java.awt.Toolkit.getDefaultToolkit().beep();
     JOptionPane.showMessageDialog(null,W,"Error!",JOptionPane.ERROR_MESSAGE);
-    //RFP.flushFields();  TIP: FieldsPane class includes the method clearAllFields()
+    if(RFP.isShowing()) {
+      RFP.clearAllFields();
+      RFP.getButton().setVisible(false);
+    } else if(UFP.isShowing()) {
+      UFP.clearAllFields();
+      UFP.getButton().setVisible(false);
+    }
   }
   public void addCreationListener(ActionListener L) {
     if(CFP.isShowing()) {
@@ -137,7 +144,12 @@ public class CrudView extends javax.swing.JFrame {
   public void addUpdateListener(ActionListener L) {
     UFP.getButton().addActionListener(L);
   }
-  public static void jumpToTab(int index) {
+
+  private void jumpToTab(int index) {
     TB.setSelectedIndex(index);
+    javax.swing.JTextField[]data=RFP.getDataFields();
+    for(int i=0;i<data.length;i++)
+      UFP.getDataFields()[i].setText(data[i].getText());
+    UFP.enableEdit();
   }
 }

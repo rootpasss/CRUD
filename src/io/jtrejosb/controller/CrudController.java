@@ -71,7 +71,7 @@ public class CrudController {
         email.length()>0&&job.length()>0) {
       CM.update(code,name,age,phone,email,job,code);
     } else {
-      CV.showWarning("All fields are REQUIRED due to update this record!");
+      CV.showWarning("All fields are REQUIRED due to update any record!");
     }
   }
 }

@@ -150,17 +150,17 @@ public class FieldsPane extends javax.swing.JPanel implements FieldMode {
   private void mode3() {
     mode2();
     B.setText("Update");
-    B.setVisible(true);
+    //B.setVisible(true);
   }
 
   private void mode4() {
     mode2();
     B.setText("Delete");
-    B.setVisible(true);
+    //B.setVisible(true);
   }
 
   public void enableEdit() {
-    fCode.setEditable(true);
+    //fCode.setEditable(true);
     fName.setEditable(true);
     fAge.setEditable(true);
     fPhone.setEditable(true);
