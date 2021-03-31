@@ -26,14 +26,13 @@ import javax.swing.JTabbedPane;
 
 import io.jtrejosb.view.core.FieldsPane;
 
-//TODO: Try to make just ONE pane with fields and then instantiate it for the 4 tab panes
-//TODO: Continue adding panels for Update and Delete sections
 @SuppressWarnings("serial")
 public class CrudView extends javax.swing.JFrame {
   private JTabbedPane TB;
   private FieldsPane CFP;
   private FieldsPane RFP;
   private FieldsPane UFP;
+  private FieldsPane DFP;
   public CrudView() {
     super("CRUD Project");
     setSize(420,200);
@@ -43,13 +42,16 @@ public class CrudView extends javax.swing.JFrame {
     CFP=new FieldsPane();
     RFP=new FieldsPane();
     UFP=new FieldsPane();
+    DFP=new FieldsPane();
     CFP.setDisplayMode(FieldsPane.CREATION_MODE);
     RFP.setDisplayMode(FieldsPane.READ_MODE);
     UFP.setDisplayMode(FieldsPane.UPDATE_MODE);
+    DFP.setDisplayMode(FieldsPane.DELETION_MODE);
     TB=new JTabbedPane();
     TB.addTab("Create",CFP);
     TB.addTab("Read",RFP);
     TB.addTab("Update",UFP);
+    TB.addTab("Delete",DFP);
     add(TB);
     setVisible(true);
   }
@@ -102,7 +104,7 @@ public class CrudView extends javax.swing.JFrame {
     else if(UFP.isShowing())
       return UFP.getFinderField().getText();
     else
-      return "";
+      return DFP.getFinderField().getText();
   }
 
   public void fillData(List<String> info) {
@@ -118,6 +120,11 @@ public class CrudView extends javax.swing.JFrame {
       for(int i=0;i<fields.length;i++)
         fields[i].setText(info.get(i));
       UFP.enableEdit();
+    } else {
+      fields=DFP.getDataFields();
+      for(int i=0;i<fields.length;i++)
+        fields[i].setText(info.get(i));
+      DFP.showButton();
     }
   }
   public void showWarning(String W) {
@@ -139,10 +146,15 @@ public class CrudView extends javax.swing.JFrame {
   public void addReadListener(ActionListener L) {
     RFP.getFinderField().addActionListener(L);
     UFP.getFinderField().addActionListener(L);
+    DFP.getFinderField().addActionListener(L);
   }
 
   public void addUpdateListener(ActionListener L) {
     UFP.getButton().addActionListener(L);
+  }
+
+  public void addDeletionListener(ActionListener L) {
+    DFP.getButton().addActionListener(L);
   }
 
   private void jumpToTab(int index) {

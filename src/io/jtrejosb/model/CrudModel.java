@@ -25,7 +25,6 @@ import java.sql.SQLException;
 
 import java.util.ArrayList;
 
-//TODO: Test separatelly every single CRUD method
 public class CrudModel {
   private Connection CC;
   public CrudModel() {

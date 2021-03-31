@@ -22,7 +22,6 @@ import java.util.List;
 import io.jtrejosb.model.CrudModel;
 import io.jtrejosb.view.CrudView;
 
-//TODO: Continue adding listeners for CRUD
 public class CrudController {
   private CrudModel CM;
   private CrudView CV;
@@ -32,6 +31,7 @@ public class CrudController {
     CV.addCreationListener(e->creation());
     CV.addReadListener(e->read());
     CV.addUpdateListener(e->update());
+    CV.addDeletionListener(e->deletion());
   }
   private void creation() {
     String code=CV.getCode();
@@ -73,5 +73,11 @@ public class CrudController {
     } else {
       CV.showWarning("All fields are REQUIRED due to update any record!");
     }
+  }
+
+  private void deletion() {
+    /*String code=CV.getCode();
+    CM.delete(code);*/
+    CM.delete(CV.getFindCode());
   }
 }
