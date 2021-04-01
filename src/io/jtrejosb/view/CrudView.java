@@ -26,6 +26,7 @@ import javax.swing.JTabbedPane;
 
 import io.jtrejosb.view.core.FieldsPane;
 
+//TODO: Optimize getters to avoid return a empty string
 @SuppressWarnings("serial")
 public class CrudView extends javax.swing.JFrame {
   private JTabbedPane TB;
@@ -58,44 +59,38 @@ public class CrudView extends javax.swing.JFrame {
   public String getCode() {
     if(CFP.isShowing())
       return CFP.getCode();
-    else if(UFP.isShowing())
+    else
       return UFP.getCode();
-    return "";
   }
   public String getName() {
     if(CFP.isShowing())
       return CFP.getName();
-    else if(UFP.isShowing())
+    else
       return UFP.getName();
-    return "";
   }
   public String getAge() {
     if(CFP.isShowing())
       return CFP.getAge();
-    else if(UFP.isShowing())
+    else
       return UFP.getAge();
-    return "";
   }
   public String getPhone() {
     if(CFP.isShowing())
       return CFP.getPhone();
-    else if(UFP.isShowing())
+    else
       return UFP.getPhone();
-    return "";
   }
   public String getEmail() {
     if(CFP.isShowing())
       return CFP.getEmail();
-    else if(UFP.isShowing())
+    else
       return UFP.getEmail();
-    return "";
   }
   public String getJob() {
     if(CFP.isShowing())
       return CFP.getJob();
-    else if(UFP.isShowing())
+    else
       return UFP.getJob();
-    return "";
   }
 
   public String getFindCode() {
@@ -111,21 +106,18 @@ public class CrudView extends javax.swing.JFrame {
     javax.swing.JTextField[] fields;
     if(RFP.isShowing()) {
       fields=RFP.getDataFields();
-      for(int i=0;i<fields.length;i++)
-        fields[i].setText(info.get(i));
       RFP.showButton();
       RFP.getButton().addActionListener(e->jumpToTab(2));
     } else if(UFP.isShowing()) {
       fields=UFP.getDataFields();
-      for(int i=0;i<fields.length;i++)
-        fields[i].setText(info.get(i));
       UFP.enableEdit();
     } else {
       fields=DFP.getDataFields();
-      for(int i=0;i<fields.length;i++)
-        fields[i].setText(info.get(i));
       DFP.showButton();
     }
+
+    for(int i=0;i<fields.length;i++)
+      fields[i].setText(info.get(i));
   }
   public void showWarning(String W) {
     java.awt.Toolkit.getDefaultToolkit().beep();
@@ -136,6 +128,9 @@ public class CrudView extends javax.swing.JFrame {
     } else if(UFP.isShowing()) {
       UFP.clearAllFields();
       UFP.getButton().setVisible(false);
+    } else if(DFP.isShowing()) {
+      DFP.clearAllFields();
+      DFP.getButton().setVisible(false);
     }
   }
   public void addCreationListener(ActionListener L) {
