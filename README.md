@@ -8,10 +8,11 @@
 
 Basic CRUD application using MySQL
 
-**Right now the application is working in only 3 fronts, these are:**
+**The application works in 4 expected fronts, these are:**
 
 - Creation of record.
 - Read a record.
 - Update a record.
+- Delete a record.
 
 In addition there are pending some source code changes to improve scalability and prevent code duplication.
