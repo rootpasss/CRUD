@@ -76,8 +76,6 @@ public class CrudController {
   }
 
   private void deletion() {
-    /*String code=CV.getCode();
-    CM.delete(code);*/
     CM.delete(CV.getFindCode());
   }
 }

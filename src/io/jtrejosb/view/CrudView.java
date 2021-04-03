@@ -26,7 +26,6 @@ import javax.swing.JTabbedPane;
 
 import io.jtrejosb.view.core.FieldsPane;
 
-//TODO: Optimize getters to avoid return a empty string
 @SuppressWarnings("serial")
 public class CrudView extends javax.swing.JFrame {
   private JTabbedPane TB;
