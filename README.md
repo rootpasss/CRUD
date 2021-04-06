@@ -15,4 +15,4 @@ Basic CRUD application using MySQL
 - Update a record.
 - Delete a record.
 
-In addition there are pending some source code changes to improve scalability and prevent code duplication.
+Includes a small example database to run quick testings, it can be found in <code>/database</code> directory
